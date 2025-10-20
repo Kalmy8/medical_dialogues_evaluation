@@ -1,0 +1,13 @@
+services:
+  medical_dialogues_scoring:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: prod
+    image: medical_dialogues_scoring
+    container_name: medical_dialogues_scoring   
+    ports:
+      - "8000:8000"  
+    env_file: .env
+    restart: unless-stopped
+  

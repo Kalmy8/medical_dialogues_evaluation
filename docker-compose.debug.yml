@@ -1,0 +1,20 @@
+services:
+  medical_dialogues_scoring:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: dev
+    image: medical_dialogues_scoring_debug
+    container_name: medical_dialogues_scoring_debug
+    command: [
+      "python", "-m", "debugpy", "--listen", "0.0.0.0:5678", "--wait-for-client",
+      "-m", "uvicorn", "medical_dialogues_scoring.__main__:app", "--host", "0.0.0.0", "--port", "8000", "--reload"
+    ]
+    ports:
+      - "8000:8000"  # Main application port for service
+      - "5678:5678"  # debugpy port for attaching debugger
+    volumes:
+      - ./src/medical_dialogues_scoring:/app/medical_dialogues_scoring:ro
+    env_file: .env
+    restart: unless-stopped
+  
