@@ -118,7 +118,7 @@ The script includes logic to handle API rate limits by controlling concurrency a
 To build and run Docker container containing the application:
 ```bash
 # Simple run
-docker compose -f .\docker-compose.debug.yml up
+docker compose -f .\docker-compose.yml up
 
 # In case you need to re-build the image:
 docker compose -f .\docker-compose.yml up --build
